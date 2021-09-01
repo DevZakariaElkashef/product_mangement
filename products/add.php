@@ -11,21 +11,25 @@
     <div class="container">
         <div class="row">
             <div class="col-10 mx-auto">
-                <form class="p-4 m-3 border bg-gradient-info" >
+                <form class="p-4 m-3 border bg-gradient-info" action="../handelers/products/add.php" method="POST">
                     <div class="form-group">
                         <label for="cat">Product Name</label>
-                        <input type="text" class="form-control" id="cat" >
+                        <input type="text" class="form-control" id="cat" name="name">
                     </div>
                     <div class="form-group">
                         <label for="cat">Product Price</label>
-                        <input type="text" class="form-control" id="cat" >
+                        <input type="number" class="form-control" id="cat" name ="price">
                     </div>
                     <div class="form-group">
                         <label for="cat">Product Quantity</label>
-                        <input type="text" class="form-control" id="cat" >
+                        <input type="number" class="form-control" id="cat" name="qty">
+                    </div>
+                    <div class="form-group">
+                        <label for="cat">Product Code</label>
+                        <input type="text" class="form-control" id="cat" name="code">
                     </div>
         
-                    <button type="submit" class="btn btn-success" >
+                    <button type="submit" class="btn btn-success" name="submit">
                         <i class="bi bi-reply-all-fill"></i> Submit
                      </button>
                 </form>

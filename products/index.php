@@ -1,5 +1,13 @@
-<?php require_once '../app/config.php'; ?>
-<?php require_once '../inc/header.php'; ?>     
+<?php
+require_once '../app/config.php';
+require_once '../inc/header.php';
+include('../app/database.php');
+
+$sql = "SELECT * FROM `products` ";
+$result = mysqli_query($conn, $sql);
+
+
+?>    
 
     <div class="jumbotron p-2 m-4">
         <h3 class=""> 
@@ -14,48 +22,29 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Category Name</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Product Price</th>
                     <th scope="col">Product Quantity</th>
+                    <th scope="col">Product Code</th>
+                    <th scope="col">action</th>
                     <th scope="col">action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>category name </td>
-                        <td>product name </td>
-                        <td>850 </td>
-                        <td>100 </td>
-                        <td>
-                            <a href="#" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-danger">Delete <i class="bi bi-x-square-fill"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>category name </td>
-                        <td>product name </td>
-                        <td>850 </td>
-                        <td>100 </td>
-                        <td>
-                            <a href="#" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-danger">Delete <i class="bi bi-x-square-fill"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>category name </td>
-                        <td>product name </td>
-                        <td>850 </td>
-                        <td>100 </td>
-                        <td>
-                            <a href="#" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-danger">Delete <i class="bi bi-x-square-fill"></i></a>
-                        </td>
-                    </tr>
+                <?php $i=0; while($row = mysqli_fetch_assoc($result)) :?>
+                        <tr>
+                            <td><?= ++$i ?></td>
+                            <td><?= $row['name'] ?></td>
+                            <td><?= $row['category_id'] ?></td>
+                            <td><?= $row['price'] ?></td>
+                            <td><?= $row['qty'] ?></td>
+                            <td><?= $row['code'] ?></td>
+                            <td><a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning">Edit</a></td>
+                            <td><a href="../handelers/products/delete.php?id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    <?php endwhile; ?>
                 </tbody>
                 </table>
 

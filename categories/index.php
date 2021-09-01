@@ -1,4 +1,12 @@
-<?php require_once '../app/config.php'; ?>     
+<?php 
+require_once '../app/config.php'; 
+include('../app/database.php');
+
+$sql = "SELECT * FROM `categories` ";
+$result = mysqli_query($conn, $sql);
+
+
+?>     
 
 <?php
 include('../inc/header.php');  ?>     
@@ -16,36 +24,21 @@ include('../inc/header.php');  ?>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Category Name</th>
-                    <th scope="col">action</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>First </td>
-                        <td>
-                            <a href="#" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-danger">Delete <i class="bi bi-x-square-fill"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Second</td>
-                        <td>
-                            <a href="#" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-danger">Delete <i class="bi bi-x-square-fill"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Third</td>
-                        <td>
-                            <a href="#" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-danger">Delete <i class="bi bi-x-square-fill"></i></a>
-                        </td>
-                    </tr>
+                    <?php $i=0; while($row = mysqli_fetch_assoc($result)) :?>
+                        <tr>
+                            <td><?= ++$i ?></td>
+                            <td><?= $row['name'] ?></td>
+                            <td><a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning">Edit</a></td>
+                            <td><a href="../handelers/categories/delete.php?id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    <?php endwhile; ?>
                 </tbody>
                 </table>
 

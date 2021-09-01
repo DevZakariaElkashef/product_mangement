@@ -1,7 +1,14 @@
 <?php 
-session_start() ;
-
+require_once '../app/config.php'; 
 include('../inc/header.php');
+include('../app/database.php');
+
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM `categories` WHERE `id` = $id ";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+
 
  ?>     
 
@@ -15,13 +22,14 @@ include('../inc/header.php');
     <div class="container">
         <div class="row">
             <div class="col-10 mx-auto">
-                <form class="p-4 m-3 border bg-gradient-info">
+                <form class="p-4 m-3 border bg-gradient-info" action="<?php echo URL.'handelers/categories/update.php'; ?>" method="POST">
                     <div class="form-group">
                         <label for="cat">Category Name</label>
-                        <input type="text" class="form-control" id="cat" >
+                        <input type="text" class="form-control" id="cat" name="name" value="<?= $row['name'] ?>">
+                        <input type="hidden" name="id" value="<?= $id ?>">
                     </div>
         
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success" name="submit">
                         <i class="bi bi-reply-all-fill"></i> Submit
                      </button>
                 </form>

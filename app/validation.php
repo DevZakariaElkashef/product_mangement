@@ -14,13 +14,19 @@ function minVal($str, $min){
     return false;
 }
 
-    function maxVal($str, $max){
-        if(strlen($str) > $max){
-            return true;
-        }
-        return false;
-
+function maxVal($str, $max){
+    if(strlen($str) > $max){
+        return true;
     }
+    return false;
+}
+
+function numberVal($value){
+    if(is_numeric($value)){
+        return true;
+    }
+    return false;
+}
 
     function is_filtered ($str){
         $str = trim($str);

@@ -1,4 +1,7 @@
-<?php require_once '../inc/header.php'; ?>     
+<?
+require_once '../inc/header.php'; 
+require_once '../app/config.php';
+?>
 
     <div class="jumbotron p-2 m-4">
         <h3 class=""> 

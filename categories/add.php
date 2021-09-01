@@ -7,12 +7,13 @@ include '../app/session.php';
 
 <?php
 include('../inc/header.php') ; ?>   
+<div class="jumbotron p-2 m-4">
+    <h3 class=""> 
+        <a class="btn btn-primary btn-lg" href="<?php echo URL.'categories/index.php'; ?>" role="button">View All Categories </a>
+    </h3>
+</div>
 
-    <div class="jumbotron p-2 m-4">
-        <h3 class=""> 
-            <a class="btn btn-primary btn-lg" href="<?php echo URL.'categories/index.php'; ?>" role="button">View All Categories </a>
-        </h3>
-    </div>
+    
     <h1 class=" p-3 border display-4">  Add New Categoery  </h1>
     <?php
     if(isset($_SESSION['errors'])) :
@@ -46,6 +47,8 @@ include('../inc/header.php') ; ?>
             </div>
         </div>
     </div>
+
+
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script type="text/javascript">
