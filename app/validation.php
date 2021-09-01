@@ -1,30 +1,24 @@
 <?php 
 
-    function is_requiredVal($val){
-        return empty($val);
+function required($val){
+    if(empty($val)){
+    return true;
     }
+    return false;
+}
 
-    function is_minValue($str, $minValue){
-        $str = trim($str);
-        $str = filter_var($str, FILTER_SANITIZE_STRING);
-
-        if(strlen($str)<$minValue){
-            return false;
-        }
+function minVal($str, $min){
+    if(strlen($str) < $min){
         return true;
-
     }
+    return false;
+}
 
-    function is_maxValue($str, $maxValue){
-
-        $str = trim($str);
-        $str = filter_var($str, FILTER_SANITIZE_STRING);
-
-
-        if(strlen($str)>$maxValue){
-            return false;
+    function maxVal($str, $max){
+        if(strlen($str) > $max){
+            return true;
         }
-        return true;
+        return false;
 
     }
 

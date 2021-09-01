@@ -3,7 +3,7 @@
 
     <div class="jumbotron p-2 m-4">
         <h3 class=""> 
-            <a class="btn btn-primary btn-lg" href="index.php" role="button">View All Products </a>
+            <a class="btn btn-primary btn-lg" href="<?= URL . "products/index.php" ?>" role="button">View All Products </a>
         </h3>
     </div>
     <h1 class=" p-3 border display-4">  Add New Product  </h1>

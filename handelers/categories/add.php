@@ -6,17 +6,17 @@ include '../../app/database.php';
 $errors = [];
 
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])){
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 
     $name = $_POST['name'];
 
     // validations 
-    if(is_requiredVal($name)){
+    if(required($name)){
         $errors[] = "name is required";
-    }elseif(!is_minValue($name,3)){
+    }elseif(minVal($name,3)){
         $errors[] = "please type more than 3 chars";
     }
-    elseif(!is_maxValue($name,50)){
+    elseif(maxVal($name,50)){
         $errors[] = "please type less than 50 chars";
     }
 
@@ -24,9 +24,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])){
     if(empty($errors)){
         $sql = "INSERT INTO categories(`name`) VALUES('$name')";
         if(DB_insert($sql)){
-            SE_input('success',"Added Success");
+            $_SESSION['message'] = ['added sucsess'];
         }else{
-            die("Adsfasdfasfd");
+            die("ERROR");
         }
     }else{
 

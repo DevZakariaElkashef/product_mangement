@@ -1,10 +1,10 @@
 <?php
 
-function showData($data){
-  echo "<pre>";
-    print_r($data);
-  echo "</pre>";
-}
+// function showData($data){
+//   echo "<pre>";
+//     print_r($data);
+//   echo "</pre>";
+// }
 ?> 
 <!doctype html>
 <html lang="en">
@@ -32,19 +32,19 @@ function showData($data){
           <a class="nav-link active" aria-current="page" href="<?= URL; ?>">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo URL;?>categories/index.php">Categories</a>
+          <a class="nav-link" href="<?php echo URL . "categories/index.php" ?>">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo URL;?>products/index.php">Products</a>
+          <a class="nav-link" href="<?php echo URL . "products/index.php" ?>">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo URL;?>users/index.php">Users</a>
+          <a class="nav-link" href="<?php echo URL . "users/index.php" ?>">Users</a>
         </li>
       </ul>
 
       <ul class="navbar-nav  m-right mb-2 mb-lg-0">
         <li class="nav-item">
-          <?php if(isset($_SESSION['name'])): ?>
+          <?php if(isset($_SESSION['user_email'])): ?>
           <a class="nav-link active" aria-current="page" href="<?php echo URL."logout.php"; ?>">Logout</a>
           <?php endif;  ?>
         </li>

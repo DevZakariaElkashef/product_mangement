@@ -1,7 +1,8 @@
-<?php require_once '../app/config.php'; 
+<?php require_once '../app/config.php';
 include '../app/session.php';
 
-var_dump($_SESSION);
+
+// var_dump($_SESSION);
 ?>     
 
 <?php
@@ -13,7 +14,21 @@ include('../inc/header.php') ; ?>
         </h3>
     </div>
     <h1 class=" p-3 border display-4">  Add New Categoery  </h1>
-    <h3> <?php echo SE_success('success'); ?></h3>
+    <?php
+    if(isset($_SESSION['errors'])) :
+    foreach($_SESSION['errors'] as $value) :?>
+        <div class="col-4 mx-auto alert text-center border alert-danger text-uppercase" id="message">
+            <?= $value ?>
+        </div>
+    <?php endforeach; ?>
+    <?php endif; ?>
+    
+    <?php
+    if(isset($_SESSION['message'])) {
+        echo '<div class="col-4 mx-auto alert text-center border alert-success text-uppercase" id="message">'. $_SESSION['message'][0] .'</div>';
+    }
+        
+     ?>
 
     <div class="container">
         <div class="row">
@@ -24,7 +39,7 @@ include('../inc/header.php') ; ?>
                         <input type="text" name="name" class="form-control" id="cat" >
                     </div>
         
-                    <button type="submit" class="btn btn-success my-3">
+                    <button type="submit" class="btn btn-success my-3" name="submit">
                         <i class="bi bi-reply-all-fill"></i> Submit
                      </button>
                 </form>
@@ -33,9 +48,16 @@ include('../inc/header.php') ; ?>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
-
+    <script type="text/javascript">
+        setTimeout(function() {
+            document.getElementById('message').style.display = "none";
+        }, 2000);
+        document.getElementById('message').style.display = "block";
+    </script>
 <?php include('../inc/footer.php'); ?>     
 
 
-
+<?php
+unset($_SESSION['errors'], $_SESSION['message']);
+?>
 

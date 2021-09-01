@@ -1,3 +1,4 @@
+<?php require_once '../app/config.php'; ?>
 <?php 
 require_once ('../inc/header.php'); 
 
@@ -8,7 +9,7 @@ define('Main_path', 'E:/xampp/htdocs/productms');
 
     <div class="jumbotron p-2 m-4">
         <h3 class=""> 
-            <a class="btn btn-success btn-lg" href="add.php" role="button">Add New User </a>
+            <a class="btn btn-success btn-lg" href="<?= URL . "users/add.php" ?>" role="button">Add New User </a>
         </h3>
     </div>
     <h1 class=" p-3 border display-4">  All Users  </h1>

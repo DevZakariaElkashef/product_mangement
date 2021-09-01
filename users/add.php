@@ -1,8 +1,9 @@
+<?php require_once '../app/config.php'; ?>
 <?php require_once '../inc/header.php'; ?>     
 
     <div class="jumbotron p-2 m-4">
         <h3 class=""> 
-            <a class="btn btn-primary btn-lg" href="#" role="button">View All Users </a>
+            <a class="btn btn-primary btn-lg" href="<?= URL . "users/index.php" ?>" role="button">View All Users </a>
         </h3>
     </div>
     <h1 class=" p-3 border display-4">  Add New User  </h1>

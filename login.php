@@ -1,4 +1,7 @@
-<?php include 'inc/conn.php'; ?>
+<?php
+session_start();
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,26 +16,36 @@
   </head>
   <body>
     <h1 class="p-5 text-center">Login</h1>
+    <?php 
+    if(isset($_SESSION['errors'])) :
+    foreach($_SESSION['errors'] as $value) :?>
+        <div class="col-4 mx-auto alert alert-danger">
+            <?= $value ?>
+        </div>
+    <?php endforeach; ?>
+    <?php endif; ?>
 
+    <!--
     <?php 
 
         
 
-        if(isset($_GET['id'])){
-            echo $_GET['id'];
-        }
-        if(isset($_POST['email'])){
+        // if(isset($_GET['id'])){
+        //     echo $_GET['id'];
+        // }
+
+        // if(isset($_POST['email'])){
             // $email = mysqli_real_escape_string($conn,htmlspecialchars(htmlentities($_POST['email'])));
             // $password =  mysqli_real_escape_string($conn,htmlspecialchars(htmlentities($_POST['password'])));
             // $pass = password_verify($password,'$2y$10$IHKzbUpId7mXbI.Ez3B5besMHI3w3KH0Z4jGWBf.7M2kXhqbQGq/2');
-           
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+            // $email = $_POST['email'];
+            // $password = $_POST['password'];
+            
 
-            $sql = "SELECT * FROM users WHERE email='$email'";
-            $result = mysqli_query($conn,$sql);
-            $count = mysqli_num_rows($result);
-            echo $count;
+            // $sql = "SELECT * FROM users WHERE email='$email'";
+            // $result = mysqli_query($conn,$sql);
+            // $count = mysqli_num_rows($result);
+            // echo $count;
            
             // $sql = "SELECT * FROM users  WHERE email='$email' and password='$password'";
             // echo $sql;
@@ -41,24 +54,24 @@
             // echo "<br>";
             // // anythig' or 'a'='a
             // // var_dump($count);
-            while($row = mysqli_fetch_array($result))
-            {
-                echo $row['name']. "<br>";
-            }
+            // while($row = mysqli_fetch_array($result))
+            // {
+            //     echo $row['name']. "<br>";
+            // }
             // if($result){
             //     echo "sdfasdff";
             //     var_dump(mysqli_fetch_assoc($result));
             // }
             // echo  htmlspecialchars( htmlentities($_POST['email']));
 
-        }
+        // }
 
-    ?> 
+    ?> -->
 
     <div class="container">
         <div class="row">
             <div class="col-6 mx-auto">
-                <form class="p-4 m-3 border bg-gradient-info" method="POST">
+                <form action="handelers/adminstrition/login.php" class="p-4 m-3 border bg-gradient-info" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" name="email" class="form-control" id="email" >
@@ -68,7 +81,7 @@
                         <input type="text" name="password" class="form-control" id="pass" >
                     </div>
         
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success" name="submit">
                         <i class="bi bi-reply-all-fill"></i> Submit
                      </button>
                 </form>
@@ -94,9 +107,16 @@
 
 <!-- https://github.com/MOSTAFAMAHFOUZ/php-workshop-1-design.git -->
 
-<!-- foreach(getallheaders() as $key => $val){
+<!--
+    foreach(getallheaders() as $key => $val){
             echo $key . " => " . $val . "<br>";
-        }
+    }
 
         var_dump(apache_request_headers());
-        var_dump(get_headers("https://www.youtube.com/")); -->
+        var_dump(get_headers("https://www.youtube.com/"));
+-->
+
+
+<?php
+unset($_SESSION['errors']);
+?>
