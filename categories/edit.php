@@ -14,7 +14,7 @@ $row = mysqli_fetch_assoc($result);
 
     <div class="jumbotron p-2 m-4">
         <h3 class=""> 
-            <a class="btn btn-primary btn-lg" href="edit.php" role="button">View All Categories </a>
+            <a class="btn btn-primary btn-lg" href="<?php echo URL.'categories/index.php'; ?>" role="button">View All Categories </a>
         </h3>
     </div>
     <h1 class=" p-3 border display-4">  Edit Categoery  </h1>

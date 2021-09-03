@@ -6,7 +6,7 @@ include('../app/database.php');
 $sql = "SELECT * FROM `products` ";
 $result = mysqli_query($conn, $sql);
 
-
+ 
 ?>    
 
     <div class="jumbotron p-2 m-4">
@@ -23,7 +23,6 @@ $result = mysqli_query($conn, $sql);
                 <thead class="thead-dark">
                     <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Category Name</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Product Price</th>
                     <th scope="col">Product Quantity</th>
@@ -37,7 +36,6 @@ $result = mysqli_query($conn, $sql);
                         <tr>
                             <td><?= ++$i ?></td>
                             <td><?= $row['name'] ?></td>
-                            <td><?= $row['category_id'] ?></td>
                             <td><?= $row['price'] ?></td>
                             <td><?= $row['qty'] ?></td>
                             <td><?= $row['code'] ?></td>

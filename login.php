@@ -19,7 +19,7 @@ session_start();
     <?php 
     if(isset($_SESSION['errors'])) :
     foreach($_SESSION['errors'] as $value) :?>
-        <div class="col-4 mx-auto alert alert-danger">
+        <div class="col-4 mx-auto alert alert-danger" id="message">
             <?= $value ?>
         </div>
     <?php endforeach; ?>
@@ -74,11 +74,11 @@ session_start();
                 <form action="handelers/adminstrition/login.php" class="p-4 m-3 border bg-gradient-info" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" name="email" class="form-control" id="email" >
+                        <input type="email" name="email" class="form-control" id="email" >
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>
-                        <input type="text" name="password" class="form-control" id="pass" >
+                        <input type="password" name="password" class="form-control" id="pass" >
                     </div>
         
                     <button type="submit" class="btn btn-success" name="submit">
@@ -87,7 +87,17 @@ session_start();
                 </form>
             </div>
         </div>
-    </div>
+        <div class="col-6 mx-auto border" >
+                <p class="text-center my-2">Use Super Admin</p>
+                <p>Email : super@admin.com</p>
+                <p>Password : 0000</p>
+        </div>
+        <div class="col-6 mx-auto border mt-5" >
+                <p class="text-center my-2">Use Admin</p>
+                <p>Email : admin@admin.com</p>
+                <p>Password : 0000</p>
+        </div>
+            
 
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -99,7 +109,15 @@ session_start();
 
 <!-- <script>window.addEventListener("load",(event)=>{const pass=document.getElementById("pass");console.log(pass.addEventListener("keyup",function(){console.log(pass.value)}))});</script> -->
 <!-- form.addEventListener("submit",function(){alert("email is : "+email)}); -->
-
+    <script type="text/javascript">
+        setTimeout(function() {
+            document.querySelectorAll('#message').forEach( message=> {
+                message.style.display = "none"
+        })}, 2000);
+        document.querySelectorAll('#message').forEach( message=> {
+            message.style.display = "block"
+        });
+    </script>
   </body>
 </html>
 

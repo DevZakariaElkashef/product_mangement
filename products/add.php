@@ -8,6 +8,27 @@
     </div>
     <h1 class=" p-3 border display-4">  Add New Product  </h1>
 
+
+
+    <?php
+    if(isset($_SESSION['errors'])) :
+    foreach($_SESSION['errors'] as $value) :?>
+        <div class="col-4 mx-auto alert text-center border alert-danger text-uppercase" id="message">
+            <?= $value ?>
+        </div>
+    <?php endforeach; ?>
+    <?php endif; ?>
+    
+    <?php
+    if(isset($_SESSION['message'])) {
+        echo '<div class="col-4 mx-auto alert text-center border alert-success text-uppercase" id="message">'. $_SESSION['message'][0] .'</div>';
+    }
+        
+     ?>
+
+
+
+
     <div class="container">
         <div class="row">
             <div class="col-10 mx-auto">
@@ -28,7 +49,6 @@
                         <label for="cat">Product Code</label>
                         <input type="text" class="form-control" id="cat" name="code">
                     </div>
-        
                     <button type="submit" class="btn btn-success" name="submit">
                         <i class="bi bi-reply-all-fill"></i> Submit
                      </button>
@@ -37,10 +57,22 @@
         </div>
     </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+   <!-- Optional JavaScript; choose one of the two! -->
+   <script type="text/javascript">
+        setTimeout(function() {
+            document.querySelectorAll('#message').forEach( message=> {
+                message.style.display = "none"
+        })}, 2000);
+        document.querySelectorAll('#message').forEach( message=> {
+            message.style.display = "block"
+        });
+    </script>
+<?php require_once '../inc/footer.php'; ?>
 
-<?php require_once '../inc/footer.php'; ?>     
 
 
 
+<?php
+unset($_SESSION['errors'], $_SESSION['message']);
+?>
 

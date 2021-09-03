@@ -28,30 +28,10 @@ function numberVal($value){
     return false;
 }
 
-    function is_filtered ($str){
-        $str = trim($str);
-        $str = filter_var($str, FILTER_SANITIZE_STRING);
+function filter_email($val){
+    return filter_var($val, FILTER_VALIDATE_EMAIL);
 
-        if (!preg_match('/^[a-zA-Z0-9 .]+$/', $str)) {
-            return false;
-        }
-        return true;
-    }
-    
-    function strlen_in_between($min , $max , $str) {
-
-        $str = trim($str);
-        $str = filter_var($str, FILTER_SANITIZE_STRING);
-
-
-        if(!(strlen($str) >= $min && strlen($str) <= $max)) {
-            return false;
-        } 
-
-        return true;
-
-    }
-
+}
 
 
 

@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
     }
 
 
-    header("location:".URL.'products/index.php');
+    header("location:".URL.'products/add.php');
 
 
 

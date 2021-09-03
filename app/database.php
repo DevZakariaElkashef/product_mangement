@@ -9,7 +9,7 @@ $databaseName = "product_mangement";
 $conn = mysqli_connect($serverName, $userName, $password);
 
 //create database if it's not exists
-$create_db = "CREATE DATABASE IF NOT EXISTS product_mangement  ";
+$create_db = "CREATE DATABASE IF NOT EXISTS product_mangement";
 $result_create_db = mysqli_query($conn, $create_db);
 if(!$result_create_db){
     die("Error Creating Database <br>". mysqli_connect_error($conn));
@@ -86,7 +86,7 @@ function DB_insert($query){
         // return false 
         // make ne function for connection error
     }
-}
+} 
 
 //update into db function
 function DB_iupdate($query){
