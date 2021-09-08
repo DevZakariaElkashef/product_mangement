@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
         if(DB_insert($sql)){
             $_SESSION['message'] = ['added sucsess'];
         }elseif(!DB_insert($sql)){
-            die("ERROR");
+            die("ERROR". mysqli_error($conn));
         }
     }else{
         

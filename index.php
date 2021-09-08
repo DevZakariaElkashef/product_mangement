@@ -4,11 +4,7 @@ require_once 'inc/header.php';
 ?>
 <?php
 
-if(!isset($_SESSION['user_email'])){
-    header('location:login.php');
-} else{
-   
-}
+
 
 ?>
     <h1 class="text-center p-3 border display-1">  Home Page  </h1>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../../app/config.php';
 include '../../app/validation.php';
 include '../../app/session.php';
@@ -6,67 +6,70 @@ include '../../app/database.php';
 $errors = [];
 
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
-    foreach($_POST as $key => $value){
-        $$key = trim(filter_var($value,FILTER_SANITIZE_STRING));
+    foreach ($_POST as $key => $value) {
+        $$key = trim(filter_var($value, FILTER_SANITIZE_STRING));
     }
 
     // validations
     // NAME
-    if(required($name)){
+    if (required($name)) {
         $errors[] = "name is required";
-    }elseif(minVal($name,3)){
+    } elseif (minVal($name, 3)) {
         $errors[] = "please type more than 3 chars";
-    }
-    elseif(maxVal($name,50)){
+    } elseif (maxVal($name, 50)) {
         $errors[] = "please type less than 50 chars";
+    } else{
+
+        $_SESSION['product_name'] = $name;
     }
 
     // PRICE
-    if(required($price)){
+    if (required($price)) {
         $errors[] = "Price is required";
-    }
-    elseif(!numberVal($price)){
+    } elseif (!numberVal($price)) {
         $error[] = "Please Type Digit Value";
-    }
-    elseif($price <= 0){
+    } elseif ($price <= 0) {
         $error[] = "Price Can't Be Zero Or Less";
+    } else{
+        $_SESSION['product_price'] = $price;
     }
-    
+
     //QTY
-    if(required($qty)){
+    if (required($qty)) {
         $errors[] = "Quantaty is required";
-    }
-    if(!numberVal($qty)){
+    } elseif (!numberVal($qty)) {
         $error[] = "Please Type Digit Value";
-    }
-    if($qty <= 0){
+    } elseif ($qty <= 0) {
         $error[] = "qtyQuantaty Can't Be Zero Or Less";
+    } else{
+        $_SESSION['product_qty'] = $qty;
+
     }
 
     //CODE
-    if(required($code)){
+    if (required($code)) {
         $error[] = "Code Is Required";
+    } else{
+
+        $_SESSION['product_code'] = $code;
     }
 
 
-    if(empty($errors)){
+    if (empty($errors)) {
         $sql = "INSERT INTO products(`name`, `price`, `qty`, `code`) VALUES('$name', $price, $qty, '$code')";
-        if(DB_insert($sql)){
+        if (DB_insert($sql)) {
             $_SESSION['message'] = ['added sucsess'];
-        }else{
+        } else {
             die("ERROR");
         }
-    }else{
+        unset($_SESSION['product_name'], $_SESSION['product_price'], $_SESSION['product_qty'], $_SESSION['product_code']);
+    } else {
 
-        SE_input('errors',$errors);
-
+        SE_input('errors', $errors);
     }
 
 
-    header("location:".URL.'products/add.php');
-
-
-
+    header("location:" . URL . 'products/add.php');
 }

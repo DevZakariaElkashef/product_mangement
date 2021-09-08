@@ -17,14 +17,14 @@ $password = $_POST['password'];
     elseif(!filter_email($email)){
         $errors[] = "Email Is Not Valid";
     }
+    $_SESSION['user_email'] = $email;
     //password
     if(required($password)){
         $errors[] = "Password Is Required";
     }
     $password = sha1($password);
-
+    
 }
-
 // echo $email;
 
 $sql = "SELECT * FROM `users` WHERE `email` = '$email' AND `password` = '$password' ";

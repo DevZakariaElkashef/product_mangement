@@ -24,7 +24,7 @@
         
      ?>
 
-
+ 
 
 
 
@@ -36,23 +36,39 @@
                 <form class="p-4 m-3 border bg-gradient-info" action="../handelers/users/add.php" method="POST">
                     <div class="form-group">
                         <label for="fname">First Name</label>
-                        <input type="text" class="form-control" id="name"  name="fname">
+                        <input type="text" class="form-control" id="name"  name="fname" value="<?php
+                        if(isset($_SESSION['new_fname'])){
+                            echo $_SESSION['new_fname'];
+                        }
+                    ?>">
                     </div>
                     <div class="form-group">
                         <label for="lname">Last Name</label>
-                        <input type="text" class="form-control" id="name"  name="lname">
+                        <input type="text" class="form-control" id="name"  name="lname" value="<?php
+                        if(isset($_SESSION['new_lname'])){
+                            echo $_SESSION['new_lname'];
+                        }
+                    ?>">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email"  name="email">
+                        <input type="text" class="form-control" id="email"  name="email" value="<?php
+                        if(isset($_SESSION['new_email'])){
+                            echo $_SESSION['new_email'];
+                        }
+                    ?>">
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>
-                        <input type="password" class="form-control" id="pass" name="password" >
+                        <input type="password" class="form-control" id="pass" name="password">
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
                         <select class="form-select" aria-label="Default select example" name="type">
+                        <?php if(isset($_SESSION['new_type'])) :?>
+                            <option value="<?= $_SESSION['new_type']?>"><?= $_SESSION['new_type']?></option>
+                        <?php endif;?>
+                            <option value=""></option>
                             <option value="admin">Admin</option>
                             <option value="super_admin">Super Admin</option>
                         </select>

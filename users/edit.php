@@ -4,9 +4,20 @@ include '../app/database.php';
 include "../inc/header.php";
 
 $id = $_GET['id'];
+
+if(!is_numeric($id) || !isset($id)){
+    header('location:index.php');
+}
+
 $sql = "SELECT * FROM `users` WHERE `id` = $id ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
+
+$check = mysqli_num_rows($result);
+if(!$check){
+    header('location:index.php');
+}
+
 
 ?>
     <div class="jumbotron p-2 m-4">
@@ -41,7 +52,7 @@ $row = mysqli_fetch_assoc($result);
                         <label for="type">Type</label>
                         <select class="form-select" aria-label="Default select example" name="type">
                             <option value="<?= $row['type'] ?>"><?= $row['type'] ?></option>
-                            <option value="admin">Admin</option>
+                            <option value="admin">admin</option>
                             <option value="super_admin">Super Admin</option>
                         </select>
                     </div>

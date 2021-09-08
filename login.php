@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "app/database.php";
 
 ?>
 <!doctype html>
@@ -74,7 +75,11 @@ session_start();
                 <form action="handelers/adminstrition/login.php" class="p-4 m-3 border bg-gradient-info" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" >
+                        <input type="email" name="email" class="form-control" id="email" value="<?php
+                            if(isset($_SESSION['user_email'])){
+                                echo $_SESSION['user_email'];
+                            }
+                        ?>">
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>
@@ -87,16 +92,7 @@ session_start();
                 </form>
             </div>
         </div>
-        <div class="col-6 mx-auto border" >
-                <p class="text-center my-2">Use Super Admin</p>
-                <p>Email : super@admin.com</p>
-                <p>Password : 0000</p>
-        </div>
-        <div class="col-6 mx-auto border mt-5" >
-                <p class="text-center my-2">Use Admin</p>
-                <p>Email : admin@admin.com</p>
-                <p>Password : 0000</p>
-        </div>
+      
             
 
 

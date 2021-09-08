@@ -5,10 +5,18 @@ include('../app/database.php');
 
 $id = $_GET['id'];
 
+if(!is_numeric($id) || !isset($id)){
+    header('location:index.php');
+}
+
 $sql = "SELECT * FROM `categories` WHERE `id` = $id ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
+$check = mysqli_num_rows($result);
+if(!$check){
+    header('location:index.php');
+}
 
  ?>     
 

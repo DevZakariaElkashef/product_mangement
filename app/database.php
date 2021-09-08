@@ -74,6 +74,31 @@ if(!$result_create_users_table){
     die("error creating users table <br>". mysqli_error($conn));
 }
 
+$test = sha1("0000");
+
+// insert admins 
+$sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`, `type`)
+SELECT * FROM (SELECT 'super', 'admin', 'z@z.com', '$test', 'super_admin') AS tmp
+WHERE NOT EXISTS (
+    SELECT first_name FROM `users` WHERE first_name = 'super'
+) LIMIT 1;";
+$result = mysqli_query($conn, $sql);
+
+if(!$result){
+    die("error admin". mysqli_error($conn));
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 //insert into db function
 function DB_insert($query){
